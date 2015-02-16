@@ -228,3 +228,8 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+
+# ATMEL Studio
+*.atsln
+*.cproj
