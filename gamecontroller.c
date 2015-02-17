@@ -18,7 +18,7 @@ unsigned char ledOn;
 
 
 void SimpleFunction(void);	//A simple function: transmit digits 0 to 9 to the terminal device
-void LoopLicht(void);
+void RunLight(void);
 
 int main(void)
 {	
@@ -57,7 +57,7 @@ int main(void)
 	a=0;
     while(1)
     {
-		LoopLicht();
+		RunLight();
 		printf("$SWITCH %d\r\n", SwitchGet());	
 		//printf ("Counter:%d\r\n",a);
 		_delay_ms(20);
@@ -71,7 +71,7 @@ void SimpleFunction(void)
 		printf ("%d ",b);
 }
 
-void LoopLicht(void)
+void RunLight(void)
 {
 	if(ledOn == 0x08)							//4de bit actief (led: D4)
 	{
