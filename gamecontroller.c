@@ -14,7 +14,7 @@
 
 
 unsigned char a,b;
-unsigned char ledOn;
+unsigned char ledOn = 0x08;		//Begin waarde moet 1 zijn - als ze allemaal 0 zijn kan er niets geshift worden.
 
 
 void SimpleFunction(void);	//A simple function: transmit digits 0 to 9 to the terminal device
@@ -45,11 +45,11 @@ int main(void)
 	//Reason this section didn't work:
 	//Omdat dezelfde teller a op verschillende plaatsen wordt gebruikt.
 	//Oplossing: b moet als counter voor SimpleFunction gebruikt worden.
-	for (a=0;a<5;a++)
+	/*for (a=0;a<5;a++)
 	{
 		SimpleFunction();
 		printf ("\r\n");
-	}	
+	}*/	
 
 	//###3###
 
@@ -58,10 +58,8 @@ int main(void)
     while(1)
     {
 		RunLight();
-		printf("$SWITCH %d\r\n", SwitchGet());	
-		//printf ("Counter:%d\r\n",a);
-		_delay_ms(20);
-		//a++;
+		printf("$SWITCH %d\r\n", SwitchGet());
+		_delay_ms(200);
     }
 }
 
@@ -75,11 +73,14 @@ void RunLight(void)
 {
 	if(ledOn == 0x08)							//4de bit actief (led: D4)
 	{
+		//0000 1000
 		ledOn = 0x01;							//1ste bit actief (led: D1)
+		//printf("ledOn = 0x01\r\n");
 	}
 	else
 	{
 		ledOn = ledOn << 1; 					//Actieve bit links shiften
+		//printf("ledOn shifted left\r\n", ledOn);
 	}
 	
 	LEDSet(ledOn);

@@ -14,7 +14,7 @@ void SwitchInit(void)
 
 char SwitchGet(void)
 {
-	char switchInput = (PORTD.IN & 0xF0) >> 3;	//Schuif B7-B4 naar B4-B1
-	return switchInput | (PORTD.IN & 0x01);		//Voeg B0 toe aan switchInput
+	char switchInput = (PORTD.IN & 0xF0) >> 3;	//Schuif PD7-PD4 naar PD4-PD1 - center is aangesloten op PD0, de rest op PD4-7. We shiften de rest 3 plaatsen terug
+	return switchInput | (PORTD.IN & 0x01);		//AND operator om enkel PD0 waarde te behouden, daarna OR om geshifte PD7-4 erbij te tellen.
 }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
