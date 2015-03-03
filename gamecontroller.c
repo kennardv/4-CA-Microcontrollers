@@ -14,8 +14,8 @@
 
 
 unsigned char a,b;
-unsigned char ledOn = 0x08;		//Begin waarde moet 1 zijn - als ze allemaal 0 zijn kan er niets geshift worden.
-
+unsigned char ledOn = 0x08;				//Begin waarde moet 1 zijn - als ze allemaal 0 zijn kan er niets geshift worden.
+unsigned char terminalByte = 0x55;		//0101 0101
 
 void SimpleFunction(void);	//A simple function: transmit digits 0 to 9 to the terminal device
 void RunLight(void);
@@ -58,7 +58,8 @@ int main(void)
     while(1)
     {
 		RunLight();
-		printf("$SWITCH %d\r\n", SwitchGet());
+		//printf("$SWITCH %d\r\n", SwitchGet());
+		printf("%d",terminalByte);
 		_delay_ms(200);
     }
 }
