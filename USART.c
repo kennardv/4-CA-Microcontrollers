@@ -21,7 +21,7 @@ void USARTInit(void)
 	//CTRLA + CTRLB(3:0) vormen de 12 bit value voor de baud rate setting. CTRLB(7:4)=baud rate scale factor
 	USART.BAUDCTRLA=0xD7;				//1101 0111
 	USART.BAUDCTRLB=0x93;				//1001 0011
-										//Scale factor=-7, Baud rate=0011 1101 0111 --> 983
+										//Scale factor=-7	2complement of 4bit : -7 = 1001	, Baud rate=0011 1101 0111 --> 983
 	
 	//USART.BAUDCTRLA=0xE5;				//BSEL=3301, BSCALE=-5 -->9600 baud
 	//USART.BAUDCTRLB=0xBC;
