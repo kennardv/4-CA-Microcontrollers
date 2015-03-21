@@ -6,6 +6,8 @@ void AccInit(void)
 		//uit slaapmodus halen :  By placing a high input signal on pin 7 of acc, the device will resume to normal mode of operation.
 		// nog iets
 		// nog iets
+		//PORTA.DIRCLR= 0b11110001;			//Set Input
+		//Poorten acc X, Y , Z staan op PA0 , PA1 en PA2 + GDN op PA4
 }
 unsigned int AccGetXAxisRaw(void)
 {
