@@ -7,6 +7,8 @@ void AnalogInit(void)
 }
 int AnalogGetCh(int PinPos,int PinNeg)
 {
-
+	
+	
+	
 	return;
 }
