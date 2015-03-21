@@ -3,7 +3,7 @@
 
 void AccInit(void)
 {
-		//uit slaapmodus halen
+		//uit slaapmodus halen :  By placing a high input signal on pin 7 of acc, the device will resume to normal mode of operation.
 		// nog iets
 		// nog iets
 }
