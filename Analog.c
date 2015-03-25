@@ -12,6 +12,8 @@ void AnalogInit(void)
 	// default settings for resolution and conversion mode
 	ADCA.CTRLB=0;
 	
+	//prescaler ADC!!!!!!!!!
+	//ADCA.PRESCALER = iets :p
 	
 	//deze registers moet ge denk ik setten maar weet niet of de waarden juist zijn
 }
@@ -19,9 +21,14 @@ int AnalogGetCh(int PinPos,int PinNeg)
 {
 	//p.257 voor registers
 	
-	 //ADCA.CTRLB 
-	 //ADCA.CH0.CTRL  
-	 //ADCA.CH0.MUXCTRL 
-	//ADCA.CTRLA
+	 //ADCA.CTRLA = 
+	 
+	 //ADCA.CH0.CTRL  =
+	 //ADCA.CH0.MUXCTRL =
+	 //ADCA.CH0.INTFLAGS = 
+	 
+	 //return ADCA.CH0.RES = 
+	
+	
 	return;
 }
