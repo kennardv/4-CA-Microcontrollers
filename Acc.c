@@ -8,7 +8,7 @@ void AccInit(void)
 		
 		//set sleep pin of accelerometer
 		PORTC.OUT&=0b01000000;			//set PC6 high
-		PORTE.DIRSET=0b01000000;		//set PC6 as output (output = 1, input = 0)
+		PORTC.DIRSET=0b01000000;		//set PC6 as output (output = 1, input = 0)
 		
 		
 		//Poorten acc X, Y , Z staan op PA0 , PA1 en PA2 + GDN op PA4
