@@ -3,8 +3,6 @@
 
 void AnalogInit(void)
 {
-	//initialisatie met referentiebron interne spanningreferentie van 1V
-	
 	//set reference to internal 1V reference
 	ADCA.REFCTRL=0b00000010;		//Setting this bit enables the bandgap for ADC measurement
 	//enable the ADC

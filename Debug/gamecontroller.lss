@@ -274,8 +274,6 @@ void AnalogInit(void)
  228:	df 93       	push	r29
  22a:	cd b7       	in	r28, 0x3d	; 61
  22c:	de b7       	in	r29, 0x3e	; 62
-	//initialisatie met referentiebron interne spanningreferentie van 1V
-	
 	//set reference to internal 1V reference
 	ADCA.REFCTRL=0b00000010;		//Setting this bit enables the bandgap for ADC measurement
  22e:	80 e0       	ldi	r24, 0x00	; 0
