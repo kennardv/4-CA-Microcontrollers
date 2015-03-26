@@ -27,7 +27,7 @@ int AnalogGetCh(int PinPos,int PinNeg)
 	
 	//Wait for measure result
 	while(ADCA.CH0.INTFLAGS != 0b00000001) { }	//set flag is set when the ADC conversion is complete
-	ADCA.CH0.INTFLAGS = 0x01;
+	ADCA.CH0.INTFLAGS = 0xFF;
 	//Get result
 	return ADCA.CH0RES;
 }

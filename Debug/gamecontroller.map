@@ -1075,25 +1075,25 @@ END GROUP
  .debug_frame   0x00000310       0x54 switch.o
  .debug_frame   0x00000364       0x74 USART.o
 
-.debug_str      0x00000000    0x115ac
+.debug_str      0x00000000    0x11576
  *(.debug_str)
  .debug_str     0x00000000    0x103cf Acc.o
                               0x108c5 (size before relaxing)
  .debug_str     0x000103cf      0x1c6 Analog.o
                               0x1098f (size before relaxing)
- .debug_str     0x00010595       0xce Clock.o
+ .debug_str     0x00010595       0x98 Clock.o
                               0x10807 (size before relaxing)
- .debug_str     0x00010663      0xd33 encoder.o
+ .debug_str     0x0001062d      0xd33 encoder.o
                               0x114e6 (size before relaxing)
- .debug_str     0x00011396       0xe9 gamecontroller.o
+ .debug_str     0x00011360       0xe9 gamecontroller.o
                               0x11280 (size before relaxing)
- .debug_str     0x0001147f       0x22 Led.o
+ .debug_str     0x00011449       0x22 Led.o
                               0x1086a (size before relaxing)
- .debug_str     0x000114a1       0x38 speaker.o
+ .debug_str     0x0001146b       0x38 speaker.o
                               0x10b03 (size before relaxing)
- .debug_str     0x000114d9       0x2f switch.o
+ .debug_str     0x000114a3       0x2f switch.o
                               0x1087b (size before relaxing)
- .debug_str     0x00011508       0xa4 USART.o
+ .debug_str     0x000114d2       0xa4 USART.o
                               0x10f1e (size before relaxing)
 
 .debug_loc      0x00000000      0x63d
