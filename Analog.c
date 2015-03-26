@@ -10,37 +10,24 @@ void AnalogInit(void)
 	//enable the ADC
 	ADCA.CTRLA=0b00000001;
 	// default settings for resolution and conversion mode
+	//DIV8
 	ADCA.CTRLB=0b00000100;
 	
 	//prescaler ADC!!!!!!!!!
-	ADCA.PRESCALER = 0b00000001;	//define the ADC clock relative to the peripheral clock
-	
-	//deze registers moet ge denk ik setten maar weet niet of de waarden juist zijn
+	ADCA.PRESCALER = 0b00000010;	//define the ADC clock relative to the peripheral clock. DIV16
 }
 int AnalogGetCh(int PinPos,int PinNeg)
 {
-	//p.257 voor registers
-	if ((PinPos > 15 || PinPos < 0) || (PinNeg > 15 || PinNeg < 0))
-	{
-		//Invalid
-		return 10000;
-	} 
-	if (PinNeg == -1)
-	{
-		ADCA.CTRLB = (0b00010000 || ADCA.CTRLB);
-	} 
-	else if(PinNeg >= 0 && PinNeg <= 7) {
-		ADCA.CH0.MUXCTRL = PinNeg;
-	}
+	//Config with parameters
+	ADCA.CH0.MUXCTRL = (PinPos & 0x0F) << 3;
+	ADCA.CH0.MUXCTRL = (PinNeg & 0x0F); //| (PinNeg & 0x07);
 	
-	 ADCA.CTRLA = 0b00000100;
-	 ADCA.CTRLB = 0b00000100;
-	 ADCA.CH0.CTRL = 0b10000000;
-	 ADCA.CH0.MUXCTRL = ((PinNeg & 0x0F) << 3) | (PinNeg & 0x07);
-	 ADCA.CH0.INTFLAGS = 0b00000001;	//set flag is set when the ADC conversion is complete
-	 
-	 //return ADCA.CH0.RES = 
+	//Start meting (NO freerun)
+	ADCA.CTRLA = (0b00000100 | ADCA.CTRLA);
 	
-	
-	return;
+	//Wait for measure result
+	while(ADCA.CH0.INTFLAGS != 0b00000001) { }	//set flag is set when the ADC conversion is complete
+	ADCA.CH0.INTFLAGS = 0x01;
+	//Get result
+	return ADCA.CH0RES;
 }

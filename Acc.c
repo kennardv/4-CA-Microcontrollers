@@ -3,6 +3,7 @@
 
 void AccInit(void)
 {
+		AnalogInit();
 		//uit slaapmodus halen :  By placing a high input signal on pin 7 of acc, the device will resume to normal mode of operation.
 		// --> ACC-sleep : PC6
 		
@@ -19,18 +20,17 @@ void AccInit(void)
 unsigned int AccGetXAxisRaw(void)
 {
 	//gebruik maken van de AnalogGetCh() methode
-	
-	return 0;
+	return AnalogGetCh(0, 4);
 }
 unsigned int AccGetYAxisRaw(void)
 {
 	//gebruik maken van de AnalogGetCh() methode
-	return 0;
+	return AnalogGetCh(1, 4);
 }
 unsigned int AccGetZAxisRaw(void)
 {
 	//gebruik maken van de AnalogGetCh() methode
-	return 0;
+	return AnalogGetCh(2, 4);
 }
 
 int AccGetXAxis(unsigned int AccRaw)

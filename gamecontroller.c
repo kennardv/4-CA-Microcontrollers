@@ -54,6 +54,7 @@ int main(void)
 	//###3###
 
 	//Main program loop
+	AccInit();
 	a=0;
     while(1)
     {
@@ -72,7 +73,8 @@ void SimpleFunction(void)
 }
 
 void PrintADC(void) {
-	printf("$ACC__ x: %i. y: %i. z: %i. \r\n", /* AccGet.. */);
+	//AnalogInit();
+	printf("$ACC__ x: %d. y: %d. z: %d. \r\n", AccGetXAxisRaw(), AccGetYAxisRaw(), AccGetZAxisRaw());
 }
 
 void RunLight(void)
