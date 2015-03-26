@@ -59,7 +59,8 @@ int main(void)
     {
 		RunLight();
 		//printf("$SWITCH %d\r\n", SwitchGet());
-		printf("%d",terminalByte);
+		//printf("%d",terminalByte);
+		PrintADC();
 		_delay_ms(200);
     }
 }
@@ -68,6 +69,10 @@ void SimpleFunction(void)
 {
 	for (b=0;b<10;b++)
 		printf ("%d ",b);
+}
+
+void PrintADC(void) {
+	printf("$ACC__ x: %i. y: %i. z: %i. \r\n", /* AccGet.. */);
 }
 
 void RunLight(void)

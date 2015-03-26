@@ -6,27 +6,38 @@ void AnalogInit(void)
 	//initialisatie met referentiebron interne spanningreferentie van 1V
 	
 	//set reference to internal 1V reference
-	ADCA.REFCTRL=0x02;							//Setting this bit enables the bandgap for ADC measurement
+	ADCA.REFCTRL=0b00000010;		//Setting this bit enables the bandgap for ADC measurement
 	//enable the ADC
-	ADCA.CTRLA=0x01;
+	ADCA.CTRLA=0b00000001;
 	// default settings for resolution and conversion mode
-	ADCA.CTRLB=0;
+	ADCA.CTRLB=0b00000100;
 	
 	//prescaler ADC!!!!!!!!!
-	ADCA.PRESCALER = 0b00000001;						//define the ADC clock relative to the peripheral clock
-	
+	ADCA.PRESCALER = 0b00000001;	//define the ADC clock relative to the peripheral clock
 	
 	//deze registers moet ge denk ik setten maar weet niet of de waarden juist zijn
 }
 int AnalogGetCh(int PinPos,int PinNeg)
 {
 	//p.257 voor registers
+	if ((PinPos > 15 || PinPos < 0) || (PinNeg > 15 || PinNeg < 0))
+	{
+		//Invalid
+		return 10000;
+	} 
+	if (PinNeg == -1)
+	{
+		ADCA.CTRLB = (0b00010000 || ADCA.CTRLB);
+	} 
+	else if(PinNeg >= 0 && PinNeg <= 7) {
+		ADCA.CH0.MUXCTRL = PinNeg;
+	}
 	
-	 //ADCA.CTRLA = 
-	 //ADCA.CTRLB=
-	 //ADCA.CH0.CTRL  =
-	 //ADCA.CH0.MUXCTRL =
-	 ADCA.CH0.INTFLAGS = 0b00000001;		//set flag is set when the ADC conversion is complete
+	 ADCA.CTRLA = 0b00000100;
+	 ADCA.CTRLB = 0b00000100;
+	 ADCA.CH0.CTRL = 0b10000000;
+	 ADCA.CH0.MUXCTRL = ((PinNeg & 0x0F) << 3) | (PinNeg & 0x07);
+	 ADCA.CH0.INTFLAGS = 0b00000001;	//set flag is set when the ADC conversion is complete
 	 
 	 //return ADCA.CH0.RES = 
 	
