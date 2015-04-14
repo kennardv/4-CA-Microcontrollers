@@ -1,6 +1,9 @@
 #include <avr/io.h>
 #include "acc.h"
 
+#define SCALE_FACTOR	//nog uitrekenen door testen
+#define CALL_OFFSET		//nog uitrekenen door testen
+
 void AccInit(void)
 {
 		AnalogInit();
@@ -8,14 +11,9 @@ void AccInit(void)
 		// --> ACC-sleep : PC6
 		
 		//set sleep pin of accelerometer
-		PORTC.OUT&=0b01000000;			//set PC6 high
+		PORTC.OUT&=0b01000000;			//set PC6 high		//of |= PIN6_bm
 		PORTC.DIRSET=0b01000000;		//set PC6 as output (output = 1, input = 0)
-		
-		
-		//Poorten acc X, Y , Z staan op PA0 , PA1 en PA2 + GDN op PA4
-		
-		//PORTA.DIRCLR= 0b11110001;			//Set Input
-		
+			
 }
 unsigned int AccGetXAxisRaw(void)
 {
@@ -35,15 +33,22 @@ unsigned int AccGetZAxisRaw(void)
 
 int AccGetXAxis(unsigned int AccRaw)
 {
-	return 0;
+	long result;
+	result = ((long) AccRaw - CALL_OFFSET);
+	result  *1000;
+	result = result / SCALE_FACTOR;
+	return (int) result;
+	
 }
 
 int AccGetYAxis(unsigned int AccRaw)
 {
+	//hetzelfde als x-as;
 	return 0;
 }
 
 int AccGetZAxis(unsigned int AccRaw)
 {
+	//hetzelfde als x-as
 	return 0;
 }
