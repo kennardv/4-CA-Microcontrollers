@@ -8,9 +8,11 @@
 
 void EncoderInit(void)
 {
-
+	//pc5 en 6 voor 2 ind interrupts op willekeurige flank
+	//ISR schrijven + globale variabele (volatile)
 }
 int EncoderGetPos(void)
 {
+	// terugeven van encoder positie
 	return;
 }
