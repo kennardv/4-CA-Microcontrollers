@@ -10,16 +10,16 @@ void AnalogInit(void)
 	PORTA.DIRCLR = PIN4_bm;		//0x10
 	
 	//set reference to internal 1V reference
-	ADCA.REFCTRL=0b00000010;		// of = ADC_BANDGAP_bm		//Setting this bit enables the bandgap for ADC measurement
+	ADCA.REFCTRL=ADC_BANDGAP_bm;		// of = ADC_BANDGAP_bm		//Setting this bit enables the bandgap for ADC measurement
 	
 	//enable the ADC
-	ADCA.CTRLA=0b00000001;			 // of = ADC_ENABLE_bm
+	ADCA.CTRLA=ADC_ENABLE_bm;			 // of = ADC_ENABLE_bm
 	
 	// default settings for resolution and conversion mode, use 12-bit ad conversion, signed/unsigned is selected at each conversion
-	ADCA.CTRLB=0b00000000;
+	ADCA.CTRLB &= ~ADC_CONMODE_bm;
 	
 	//configure prescaler ADC
-	ADCA.PRESCALER = 0b00000010;	//of = 	ADC_PRESCALER_DIV16_gc (zijn al variabelen die aangemaakt zijn --> zoveel makkelijker!	//define the ADC clock relative to the peripheral clock. DIV16 --> moet kleiner zijn als 1,4 Mhz
+	ADCA.PRESCALER = ADC_PRESCALER_DIV16_gc;	//of = 	ADC_PRESCALER_DIV16_gc (zijn al variabelen die aangemaakt zijn --> zoveel makkelijker!	//define the ADC clock relative to the peripheral clock. DIV16 --> moet kleiner zijn als 1,4 Mhz
 	
 }
 
@@ -44,9 +44,9 @@ int AnalogGetCh(int PinPos,int PinNeg)
 	if(PinPos <=15 && PinNeg==-1 ) 
 	{
 		//clear bit 4 of CTRL register to set conversion mode to unsigned
-		ADCA.CTRLB&=~ADC_CONMODE_bm;		//0x10	-->niet zeker van dit!!!	Bitwise AND + Bitwise NOT : ~ (Bits that are 0 become 1, and those that are 1 become 0)
+		//ADCA.CTRLB &= ~ADC_CONMODE_bm;		//0x10	-->niet zeker van dit!!!	Bitwise AND + Bitwise NOT : ~ (Bits that are 0 become 1, and those that are 1 become 0)
 		//configure single ended mode for unsigned mode (and set no gain)
-		ADCA.CH0.CTRL=ADC_CH_INPUTMODE_SINGLEENDED_gc;		//0x01 <<0
+		ADCA.CH0.CTRL = ADC_CH_INPUTMODE_SINGLEENDED_gc;		//0x01 <<0
 		//select input on inputmux
 		ADCA.CH0.MUXCTRL = (PinPos)<<3;	//MUX_NEG will be set to 0		//bitwise shift left
 	}
@@ -77,5 +77,5 @@ int AnalogGetCh(int PinPos,int PinNeg)
 	result =  ADCA.CH0RES;
 	
 	// return result
-	return result:
+	return result;
 }

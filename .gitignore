@@ -37,6 +37,7 @@
 
 # User-specific files
 *.suo
+*.atsuo
 *.user
 *.userosscache
 *.sln.docstates
@@ -45,7 +46,7 @@
 *.userprefs
 
 # Build results
-Debug/
+[Dd]ebug*/
 DebugPublic/
 Release/
 Releases/

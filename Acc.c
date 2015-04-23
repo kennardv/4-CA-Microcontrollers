@@ -7,12 +7,12 @@
 void AccInit(void)
 {
 		AnalogInit();
-		//uit slaapmodus halen :  By placing a high input signal on pin 7 of acc, the device will resume to normal mode of operation.
+		//uit slaapmodus halen :  By placing a high input signal on pin 6 of acc, the device will resume to normal mode of operation.
 		// --> ACC-sleep : PC6
 		
 		//set sleep pin of accelerometer
-		PORTC.OUT&=0b01000000;			//set PC6 high		//of |= PIN6_bm
-		PORTC.DIRSET=0b01000000;		//set PC6 as output (output = 1, input = 0)
+		PORTC.OUT |= 0b01000000;			//set PC6 high		//of |= PIN6_bm
+		PORTC.DIRSET = 0b01000000;		//set PC6 as output (output = 1, input = 0S) ---- 0x40
 			
 }
 unsigned int AccGetXAxisRaw(void)
@@ -34,9 +34,9 @@ unsigned int AccGetZAxisRaw(void)
 int AccGetXAxis(unsigned int AccRaw)
 {
 	long result;
-	result = ((long) AccRaw - CALL_OFFSET);
+	//result = ((long) AccRaw - CALL_OFFSET));
 	result  *1000;
-	result = result / SCALE_FACTOR;
+	//result = result / SCALE_FACTOR;
 	return (int) result;
 	
 }
