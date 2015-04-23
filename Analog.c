@@ -16,7 +16,8 @@ void AnalogInit(void)
 	ADCA.CTRLA=ADC_ENABLE_bm;			 // of = ADC_ENABLE_bm
 	
 	// default settings for resolution and conversion mode, use 12-bit ad conversion, signed/unsigned is selected at each conversion
-	ADCA.CTRLB &= ~ADC_CONMODE_bm;
+	// NOT -> 1110 1111 ---- bit 4 = conversion mode -> 0 = unsigned, 1 = signed (p. 258)
+	ADCA.CTRLB &= ADC_CONMODE_bm;
 	
 	//configure prescaler ADC
 	ADCA.PRESCALER = ADC_PRESCALER_DIV16_gc;	//of = 	ADC_PRESCALER_DIV16_gc (zijn al variabelen die aangemaakt zijn --> zoveel makkelijker!	//define the ADC clock relative to the peripheral clock. DIV16 --> moet kleiner zijn als 1,4 Mhz

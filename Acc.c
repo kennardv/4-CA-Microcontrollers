@@ -1,8 +1,12 @@
 #include <avr/io.h>
 #include "acc.h"
 
-#define SCALE_FACTOR	//nog uitrekenen door testen
-#define CALL_OFFSET		//nog uitrekenen door testen
+#define SCALE_FACTOR_X 300
+#define CALL_OFFSET_X 900
+#define SCALE_FACTOR_Y 800
+#define CALL_OFFSET_Y 945
+#define SCALE_FACTOR_Z 1600
+#define CALL_OFFSET_Z 1120
 
 void AccInit(void)
 {
@@ -34,21 +38,26 @@ unsigned int AccGetZAxisRaw(void)
 int AccGetXAxis(unsigned int AccRaw)
 {
 	long result;
-	//result = ((long) AccRaw - CALL_OFFSET));
-	result  *1000;
-	//result = result / SCALE_FACTOR;
+	result = (long) AccRaw - CALL_OFFSET_X;
+	result *= 1000;
+	result = result / SCALE_FACTOR_X;
 	return (int) result;
-	
 }
 
 int AccGetYAxis(unsigned int AccRaw)
 {
-	//hetzelfde als x-as;
-	return 0;
+	long result;
+	result = (long) AccRaw - CALL_OFFSET_Y;
+	result *= 1000;
+	result = result / SCALE_FACTOR_Y;
+	return (int) result;
 }
 
 int AccGetZAxis(unsigned int AccRaw)
 {
-	//hetzelfde als x-as
-	return 0;
+	long result;
+	result = (long) AccRaw - CALL_OFFSET_Z;
+	result *= 1000;
+	result = result / SCALE_FACTOR_Z;
+	return (int) result;
 }

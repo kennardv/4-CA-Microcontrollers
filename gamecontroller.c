@@ -74,7 +74,8 @@ void SimpleFunction(void)
 
 void PrintADC(void) {
 	//AnalogInit();
-	printf("$ACC__ x: %d. y: %d. z: %d. \r\n", AccGetXAxisRaw(), AccGetYAxisRaw(), AccGetZAxisRaw());
+	//printf("$ACC__ x: %d. y: %d. z: %d. \r\n", AccGetXAxisRaw(), AccGetYAxisRaw(), AccGetZAxisRaw());
+	printf("$ACC__ x: %d. y: %d. z: %d. \r\n", AccGetXAxis(AccGetXAxisRaw()), AccGetYAxis(AccGetYAxisRaw()), AccGetZAxis(AccGetZAxisRaw()));
 }
 
 void RunLight(void)
