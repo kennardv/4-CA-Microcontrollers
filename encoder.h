@@ -4,6 +4,6 @@
 void EncoderInit(void);		//Initialize encoder system
 int EncoderGetPos(void);		//Get encoder status as 16 bit integer
 
-
+volatile int position;
 
 #endif 
