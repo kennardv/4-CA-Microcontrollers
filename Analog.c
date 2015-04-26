@@ -10,7 +10,7 @@ void AnalogInit(void)
 	PORTA.DIRCLR = PIN4_bm;		//0x10
 	
 	//set reference to internal 1V reference
-	ADCA.REFCTRL=ADC_BANDGAP_bm;		// of = ADC_BANDGAP_bm		//Setting this bit enables the bandgap for ADC measurement
+	ADCA.REFCTRL=ADC_BANDGAP_bm;	//0x02	// of = ADC_BANDGAP_bm		//Setting this bit enables the bandgap for ADC measurement
 	
 	//enable the ADC
 	ADCA.CTRLA=ADC_ENABLE_bm;			 // of = ADC_ENABLE_bm
