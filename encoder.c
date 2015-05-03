@@ -23,14 +23,25 @@ void EncoderInit(void)
 	PORTC.INT0MASK = 0b00010000;
 	//Pin 5 is used as interrupt on mask1
 	PORTC.INT1MASK = 0b00100000;
-	
+	 
 	//PORTC.INTFLAGS = 0b00000011; // INT1IF + INT0IF			p.131  --> moet dit??
 	PORTC.INTCTRL = 0b00001010;	//INT1LVL(10) + INT0LVL(10)µ
 	
 	//ISR schrijven + globale variabele (volatile)
 	
+}
+
+ISR(PORTC_INT0MASK) //of toch PORTC_INT1_vect
+{
 	
 }
+
+ISR(PORTC_INT1MASK)	//of toch PORTC_INT1_vect?
+{
+	
+}
+
+
 int EncoderGetPos(void)
 {
 	int positie = 0;
