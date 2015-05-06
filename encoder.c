@@ -6,6 +6,9 @@
 #include <stdio.h>
 #include "encoder.h"
 
+volatile int Vorigepositie;
+volatile int Huidigepositie;
+
 void EncoderInit(void)
 {
 	//pc5 en 5 voor 2 ind interrupts op willekeurige flank
@@ -44,7 +47,9 @@ ISR(PORTC_INT1MASK)	//of toch PORTC_INT1_vect?
 
 int EncoderGetPos(void)
 {
-	int positie = 0;
+	//int positie = 0;
 	// terugeven van encoder positie
-	return positie;
+	
+	int result = (PORTC.IN & 0b00110000) >> 4;
+	return result;
 }
