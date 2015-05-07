@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "encoder.h"
 
-volatile int Vorigepositie;
+volatile int Vorigepositie;		//De waarde kan veranderen tussen verschillende opvragingen
 volatile int Relatievepositie;
 
 void EncoderInit(void)
@@ -42,6 +42,53 @@ ISR(PORTC_INT0MASK) //of toch PORTC_INT1_vect
 	//if
 	//else
 	//00 , 01 , 10 , 11
+	switch (result) {
+		case 00:
+			// Result: 0, Prev: 2
+			if ((result + Vorigepositie) % 4 == 2)
+			{
+				Relatievepositie = 3;
+			} 
+			else
+			{
+				Relatievepositie++;
+			}
+			break;
+		case 01:
+			// Result: 1, Prev: 3
+			if ((result + Vorigepositie) % 4 == 0)
+			{
+				Relatievepositie--;
+			} 
+			else
+			{
+				Relatievepositie++;
+			}
+			break;
+		case 10:
+			// Result: 2, Prev: 3
+			if ((result + Vorigepositie) % 4 == 1)
+			{
+				Relatievepositie--;
+			}
+			else
+			{
+				Relatievepositie = 0;
+			}
+			break;
+		case 11:
+			// Result: 3, Prev: 1
+			if ((result + Vorigepositie) % 4 == 0)
+			{
+				Relatievepositie--;
+			}
+			else
+			{
+				Relatievepositie++;
+			}
+			break;
+	}
+	
 	
 	Vorigepositie = result;
 }
