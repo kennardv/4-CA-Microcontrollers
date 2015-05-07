@@ -19,6 +19,8 @@ unsigned char terminalByte = 0x55;		//0101 0101
 
 void SimpleFunction(void);	//A simple function: transmit digits 0 to 9 to the terminal device
 void RunLight(void);
+void PrintADC(void);
+void PrintEncoder(void);
 
 int main(void)
 {	
@@ -81,6 +83,7 @@ void PrintADC(void) {
 
 void PrintEncoder(void) {
 	printf("$ENC___ x: %d. \r\n", EncoderGetPos());
+	printf("Vorige positie: %d.\r\n", _previousPosition);
 }
 
 void RunLight(void)
