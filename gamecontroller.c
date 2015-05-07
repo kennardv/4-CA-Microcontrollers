@@ -61,7 +61,8 @@ int main(void)
 		RunLight();
 		//printf("$SWITCH %d\r\n", SwitchGet());
 		//printf("%d",terminalByte);
-		PrintADC();
+		//PrintADC();
+		PrintEncoder();
 		_delay_ms(200);
     }
 }
@@ -75,7 +76,11 @@ void SimpleFunction(void)
 void PrintADC(void) {
 	//AnalogInit();
 	//printf("$ACC__ x: %d. y: %d. z: %d. \r\n", AccGetXAxisRaw(), AccGetYAxisRaw(), AccGetZAxisRaw());
-	printf("$ACC__ x: %d. y: %d. z: %d. \r\n", AccGetXAxis(AccGetXAxisRaw()), AccGetYAxis(AccGetYAxisRaw()), AccGetZAxis(AccGetZAxisRaw()));
+	printf("$ACC___ x: %d. y: %d. z: %d. \r\n", AccGetXAxis(AccGetXAxisRaw()), AccGetYAxis(AccGetYAxisRaw()), AccGetZAxis(AccGetZAxisRaw()));
+}
+
+void PrintEncoder(void) {
+	printf("$ENC___ x: %d. \r\n", EncoderGetPos());
 }
 
 void RunLight(void)
