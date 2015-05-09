@@ -8,6 +8,8 @@
 #define SCALE_FACTOR_Z 1600
 #define CALL_OFFSET_Z 1120
 
+//offset en scale waarden horen bij een bepaald bordje --> waarden kunnen niet perfect zijn op ander bordje.
+
 void AccInit(void)
 {
 		AnalogInit();
