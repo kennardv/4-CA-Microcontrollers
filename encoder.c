@@ -16,7 +16,7 @@ void EncoderInit(void)
 	PORTC.PIN4CTRL = 0b01011000; //0 + INVEN(1) + OPC(011 = totem-pole pullup) + ISC(000 = both edges)	p.124
 	PORTC.PIN5CTRL = 0b01011000; //INVEN(1) + OPC(011) + ISC(000)
 	
-	//Pin 4 is used as interrupt on mask0		p.123
+	//Pin 4 is used as interrupt on mask0		p.123		//2 pinnen op 1 interrupt mask samen genomen
 	PORTC.INT0MASK = 0b00110000;
 	//Pin 5 is used as interrupt on mask1
 	 
