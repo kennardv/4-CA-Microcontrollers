@@ -5,10 +5,11 @@
 void SpeakerInit(void)
 {
 		//Setup IO
+		PORTC.DIR = 0x01;
 		//PORTC.DIRCLR=
 		
 		//Setup TC for frequency generation
-		//TCC0.CTRLA=
+		TCC0.CTRLA= 0x01;
 		//TCC0.CTRLB=
 		//TCC0.CTRLC=
 		//TCC0.CTRLD=

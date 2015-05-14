@@ -19,7 +19,9 @@ unsigned char terminalByte = 0x55;		//0101 0101
 
 void SimpleFunction(void);	//A simple function: transmit digits 0 to 9 to the terminal device
 void RunLight(void);
-void PrintADC(void);
+void PrintSwitch(void);
+void PrintAccRaw(void);
+void PrintAcc(void);
 void PrintEncoder(void);
 
 int main(void)
@@ -60,12 +62,16 @@ int main(void)
 	a=0;
     while(1)
     {
-		RunLight();
-		//printf("$SWITCH %d\r\n", SwitchGet());
 		//printf("%d",terminalByte);
-		//PrintADC();
+		
+		PrintSwitch();
 		PrintEncoder();
-		_delay_ms(200);
+		PrintAccRaw();
+		PrintAcc();
+		
+		RunLight();
+		
+		_delay_ms(50);
     }
 }
 
@@ -75,29 +81,31 @@ void SimpleFunction(void)
 		printf ("%d ",b);
 }
 
-void PrintADC(void) {
-	//AnalogInit();
-	//printf("$ACC__ x: %d. y: %d. z: %d. \r\n", AccGetXAxisRaw(), AccGetYAxisRaw(), AccGetZAxisRaw());
-	printf("$ACC___ x: %d. y: %d. z: %d. \r\n", AccGetXAxis(AccGetXAxisRaw()), AccGetYAxis(AccGetYAxisRaw()), AccGetZAxis(AccGetZAxisRaw()));
+void PrintSwitch(void) {
+	printf("$SWITCH %d\r\n", SwitchGet());
+}
+
+void PrintAccRaw(void) {
+	printf("$ACCRAW %d %d %d\r\n", AccGetXAxisRaw(), AccGetYAxisRaw(), AccGetZAxisRaw());
+}
+
+void PrintAcc(void) {
+	printf("$ACC___ %d %d %d\r\n", AccGetXAxis(AccGetXAxisRaw()), AccGetYAxis(AccGetYAxisRaw()), AccGetZAxis(AccGetZAxisRaw()));
 }
 
 void PrintEncoder(void) {
-	printf("$ENC___ x: %d. \r\n", EncoderGetPos());
-	printf("Vorige positie: %d.\r\n", _previousPosition);
+	printf("$ENC___ %d\r\n", EncoderGetPos());
 }
 
 void RunLight(void)
 {
 	if(ledOn == 0x08)							//4de bit actief (led: D4)
 	{
-		//0000 1000
 		ledOn = 0x01;							//1ste bit actief (led: D1)
-		//printf("ledOn = 0x01\r\n");
 	}
 	else
 	{
 		ledOn = ledOn << 1; 					//Actieve bit links shiften
-		//printf("ledOn shifted left\r\n", ledOn);
 	}
 	
 	LEDSet(ledOn);

@@ -3,7 +3,7 @@
 
 void SwitchInit(void)
 {
-	PORTD.DIRCLR= 0b11110001;			//Set Input
+	PORTD.DIRCLR= 0b11110001;			//Set Input pins
 	PORTD.PIN0CTRL= 0b01011001;		//6: invert, 5-3: output conf: pull up, 2-0: input conf: rising edge
 	PORTD.PIN4CTRL= 0b01011001;
 	PORTD.PIN5CTRL= 0b01011001;
